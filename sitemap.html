@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .sitemap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Khung chứa các phần của Sitemap */
+        
+        .box {
+            border: 2px solid #e74c3c;
+            padding: 20px 40px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        /* Khung con (sitemap chính) */
+        
+        .box a {
+            text-decoration: none;
+            color: #e74c3c;
+            font-size: 1.2em;
+        }
+        
+        .box a:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+        /* Mũi tên */
+        
+        svg {
+            width: 30px;
+            height: 30px;
+            fill: #e74c3c;
+            margin-top: 10px;
+        }
+        /* Cấp con của các box */
+        
+        .sub-level {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .sub-level .box {
+            width: 250px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Sitemap</h1>
+
+    <div class="container">
+        <div class="sitemap">
+            <!-- Trang chủ -->
+            <div class="box">
+                <a href="#">Trang Chủ (Home)</a>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4v16m8-8h-16" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+            <!-- Cửa hàng -->
+            <div class="sub-level">
+                <div class="box">
+                    <a href="#">Cửa Hàng (Shop)</a>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4v16m8-8h-16" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+                <!-- Các trang con của cửa hàng -->
+                <div class="sub-level">
+                    <div class="box">
+                        <a href="#">Chi Tiết Giỏ Hàng (Cart Details)</a>
+                    </div>
+                    <div class="box">
+                        <a href="#">Chi Tiết Cửa Hàng (Shop Details)</a>
+                    </div>
+                    <div class="box">
+                        <a href="#">Thanh Toán (Check Out)</a>
+                    </div>
+                </div>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4v16m8-8h-16" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+            <!-- Blog -->
+            <div class="box">
+                <a href="#">Blog</a>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4v16m8-8h-16" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+            <!-- Liên Hệ -->
+            <div class="box">
+                <a href="#">Liên Hệ (Contact)</a>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4v16m8-8h-16" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+
+            <!-- Đăng Nhập / Đăng Ký -->
+            <div class="sub-level">
+                <div class="box">
+                    <a href="#">Đăng Nhập (Login)</a>
+                </div>
+                <div class="box">
+                    <a href="#">Đăng Ký (Sign Up)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
