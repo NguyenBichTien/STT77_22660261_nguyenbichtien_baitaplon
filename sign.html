@@ -138,6 +138,85 @@
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
         /* Hiệu ứng cho ảnh trong container */
+        /* Chỉnh sửa tiêu đề */
+        
+        h3 {
+            color: #d9534f;
+            /* Màu đỏ */
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Chỉnh sửa bảng */
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        /* Định dạng tiêu đề bảng */
+        
+        th {
+            background-color: #d9534f;
+            /* Màu đỏ */
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        /* Định dạng các ô trong bảng */
+        
+        td {
+            background-color: #fff;
+            color: #333;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            /* Đường viền mờ */
+        }
+        /* Hiệu ứng hover cho các dòng trong bảng */
+        
+        tr:hover {
+            background-color: #f2dede;
+            /* Màu đỏ nhạt khi hover */
+        }
+        /* Chỉnh sửa đường viền của bảng */
+        
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+        /* Định dạng khi nhấn vào ô nào */
+        
+        td:active {
+            background-color: #f2b0b0;
+        }
+        /* Định dạng các dòng lẻ */
+        
+        tr:nth-child(odd) td {
+            background-color: #f9f9f9;
+            /* Màu nền cho các dòng lẻ */
+        }
+        /* Định dạng các dòng chẵn */
+        
+        tr:nth-child(even) td {
+            background-color: #fff;
+            /* Màu nền cho các dòng chẵn */
+        }
+        /* Tăng độ đậm của đường viền giữa các ô */
+        
+        th,
+        td {
+            border-left: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+        }
+        /* Định dạng khi di chuột qua dòng trong bảng */
+        
+        tr:hover td {
+            background-color: #f2dede;
+        }
     </Style>
 </head>
 
@@ -366,9 +445,27 @@
                 <p>Bạn đã là thành viên hay chưa? <a href="account.html" class="login">Đăng nhập</a></p>
             </div>
         </div>
+        <!-- Bảng hiển thị thông tin đăng ký -->
+        <h3>Thông Tin Khách Hàng Đăng Ký</h3>
+        <table id="userTable" border="1">
+            <thead>
+                <tr>
+                    <th>Họ Tên</th>
+                    <th>Email</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Mật Khẩu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sẽ hiển thị ở đây -->
+            </tbody>
+        </table>
     </div>
-
+    </div>
     <script>
+        // Mảng để lưu trữ thông tin người dùng
+        let users = [];
+
         function validateForm() {
             var txtten = document.getElementById('txtten').value.trim();
             var txtemail = document.getElementById('txtemail').value.trim();
@@ -376,7 +473,7 @@
             var txtmk = document.getElementById('txtmk').value.trim();
             var txtlmk = document.getElementById('txtlmk').value.trim();
 
-            var tenPattern = /^[a-zA-Z ]*$/;
+            var tenPattern = /(^[A-Z]{1}[a-z]+)(\s[A-Z]{1}[a-z]*)+$/;
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             var sdtPattern = /^09[0-9]{8}$/;
             var mkPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
@@ -419,9 +516,38 @@
             }
 
             if (errors.length === 0) {
+                // Lưu thông tin người dùng vào mảng
+                var user = {
+                    name: txtten,
+                    email: txtemail,
+                    phone: txtsdt,
+                    password: txtmk
+                };
+
+                users.push(user);
                 alert('Đăng ký thành công!');
 
+                // Hiển thị thông tin người dùng trong bảng
+                displayUsers();
             }
+        }
+
+        function displayUsers() {
+            var tableBody = document.getElementById('userTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear current table data
+
+            users.forEach(function(user, index) {
+                var row = tableBody.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+
+                cell1.innerText = user.name;
+                cell2.innerText = user.email;
+                cell3.innerText = user.phone;
+                cell4.innerText = user.password;
+            });
         }
     </script>
 
