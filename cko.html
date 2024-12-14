@@ -283,214 +283,215 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Checkout Section Begin -->
-    <section class="checkout spad">
-        <div class="container">
 
-            <form id="checkoutForm">
-                <div class="form payment">
-                    <h2>THANH TOÁN</h2>
-                    <div class="inputBox">
-                        <p>Số điện thoại<span>*</span></p>
-                        <input type="text" id="phoneNumber" class="form-control">
-                        <span class="error-message" id="errorPhone"></span>
-                    </div>
-                    <div class="inputBox">
-                        <p>Email<span>*</span></p>
-                        <input type="text" id="email" class="form-control">
-                        <span class="error-message" id="errorEmail"></span>
-                    </div>
-                    <div class="inputBox">
-                        <p>Nhập mật khẩu<span>*</span></p>
-                        <input type="password" id="password" class="form-control">
-                    </div>
-                    <div class="inputBox">
-                        <p>Ghi chú đơn hàng<span>*</span></p>
-                        <input type="text" id="orderNotes" class="form-control" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt để giao hàng.">
-                    </div>
-                    <div class="checkout__input__checkbox">
-                        <label for="terms">
+    <div class="container">
+
+
+        <div class="form payment">
+            <h2>THANH TOÁN</h2>
+            <div class="checkout__order">
+                <h4>Đơn hàng</h4>
+                <div class="checkout__order__products">Sản phẩm <span>Giá</span></div>
+                <ul id="productList">
+                    <li>Hộp 20 Bút Bi TL-027 <span>120.000đ</span></li>
+                </ul>
+                <div class="checkout__order__subtotal">Tổng phụ <span>30.000đ</span></div>
+                <div class="checkout__order__total">Tổng <span>150.000đ</span></div>
+            </div>
+            <div class="inputBox">
+                <p>Số điện thoại<span>*</span></p>
+                <input type="text" id="phoneNumber" class="form-control">
+                <span class="error-message" id="errorPhone"></span>
+            </div>
+            <div class="inputBox">
+                <p>Email<span>*</span></p>
+                <input type="text" id="email" class="form-control">
+                <span class="error-message" id="errorEmail"></span>
+            </div>
+            <div class="inputBox">
+                <p>Nhập mật khẩu<span>*</span></p>
+                <input type="password" id="password" class="form-control">
+            </div>
+            <div class="inputBox">
+                <p>Ghi chú đơn hàng<span>*</span></p>
+                <input type="text" id="orderNotes" class="form-control" placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ: ghi chú đặc biệt để giao hàng.">
+            </div>
+            <div class="checkout__input__checkbox">
+                <label for="terms">
                         Tôi đồng ý với các điều khoản
                         <input type="checkbox" id="terms">
                         <span class="checkmark"></span>
                     </label>
-                    </div>
-                    <button type="button" value="Thanh toán" class="site-btn payment-btn" onclick="saveOrderInfo()">ĐẶT HÀNG</button>
+            </div>
+            <button type="button" value="Thanh toán" class="site-btn payment-btn" onclick="saveOrderInfo()">ĐẶT HÀNG</button>
 
 
-                </div>
-
-                <div class="checkout__order">
-                    <h4>Đơn hàng</h4>
-                    <div class="checkout__order__products">Sản phẩm <span>Giá</span></div>
-                    <ul id="productList">
-                        <li>Hộp 20 Bút Bi TL-027 <span>120.000đ</span></li>
-                    </ul>
-                    <div class="checkout__order__subtotal">Tổng phụ <span>30.000đ</span></div>
-                    <div class="checkout__order__total">Tổng <span>150.000đ</span></div>
-                </div>
-            </form>
-
-            <h3>Thông Tin Thanh Toán</h3>
-            <table id="orderTable">
-                <thead>
-                    <tr>
-                        <th>Số Điện Thoại</th>
-                        <th>Email</th>
-                        <th>Ghi Chú Đơn Hàng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Dữ liệu sẽ hiển thị ở đây -->
-                </tbody>
-            </table>
         </div>
 
-        <script>
-            // Mảng để lưu trữ thông tin đơn hàng
-            let orders = [];
 
-            function saveOrderInfo() {
-                // Lấy giá trị từ các trường nhập liệu
-                var phoneNumber = document.getElementById('phoneNumber').value.trim();
-                var email = document.getElementById('email').value.trim();
-                var orderNotes = document.getElementById('orderNotes').value.trim();
-                var termsAccepted = document.getElementById('terms').checked;
+        </form>
 
-                // Kiểm tra tính hợp lệ của dữ liệu
-                var isValid = true;
+        <h3>Thông Tin Thanh Toán</h3>
+        <table id="orderTable">
+            <thead>
+                <tr>
+                    <th>Số Điện Thoại</th>
+                    <th>Email</th>
+                    <th>Ghi Chú Đơn Hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sẽ hiển thị ở đây -->
+            </tbody>
+        </table>
+    </div>
 
-                if (!phoneNumber || !/^0\d{9}$/.test(phoneNumber)) {
-                    document.getElementById('errorPhone').innerText = 'Vui lòng nhập số điện thoại hợp lệ.';
-                    isValid = false;
-                } else {
-                    document.getElementById('errorPhone').innerText = '';
-                }
+    <script>
+        // Mảng để lưu trữ thông tin đơn hàng
+        let orders = [];
 
-                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    document.getElementById('errorEmail').innerText = 'Vui lòng nhập địa chỉ email hợp lệ.';
-                    isValid = false;
-                } else {
-                    document.getElementById('errorEmail').innerText = '';
-                }
+        function saveOrderInfo() {
+            // Lấy giá trị từ các trường nhập liệu
+            var phoneNumber = document.getElementById('phoneNumber').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var orderNotes = document.getElementById('orderNotes').value.trim();
+            var termsAccepted = document.getElementById('terms').checked;
 
-                if (!termsAccepted) {
-                    alert('Bạn phải đồng ý với các điều khoản để tiếp tục.');
-                    isValid = false;
-                }
+            // Kiểm tra tính hợp lệ của dữ liệu
+            var isValid = true;
 
-                if (isValid) {
-                    // Lưu thông tin vào mảng
-                    var order = {
-                        phoneNumber: phoneNumber,
-                        email: email,
-                        orderNotes: orderNotes
-                    };
-
-                    orders.push(order);
-
-                    // Hiển thị thông báo mua hàng thành công
-                    alert('Mua hàng thành công!');
-
-                    // Hiển thị thông tin đơn hàng trong bảng
-                    displayOrders();
-                    // Chuyển hướng người dùng về trang chủ sau 2 giây
-                    setTimeout(function() {
-                        window.location.href = 'index.html';
-                    }, 2000); // 2000 milliseconds = 2 seconds
-                }
+            if (!phoneNumber || !/^0\d{9}$/.test(phoneNumber)) {
+                document.getElementById('errorPhone').innerText = 'Vui lòng nhập số điện thoại hợp lệ.';
+                isValid = false;
+            } else {
+                document.getElementById('errorPhone').innerText = '';
             }
 
-            function displayOrders() {
-                var tableBody = document.getElementById('orderTable').getElementsByTagName('tbody')[0];
-                tableBody.innerHTML = ''; // Xóa dữ liệu hiện tại trong bảng
-
-                orders.forEach(function(order) {
-                    var row = tableBody.insertRow();
-                    var cell1 = row.insertCell(0);
-                    var cell2 = row.insertCell(1);
-                    var cell3 = row.insertCell(2);
-
-                    cell1.innerText = order.phoneNumber;
-                    cell2.innerText = order.email;
-                    cell3.innerText = order.orderNotes;
-                });
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('errorEmail').innerText = 'Vui lòng nhập địa chỉ email hợp lệ.';
+                isValid = false;
+            } else {
+                document.getElementById('errorEmail').innerText = '';
             }
-        </script>
+
+            if (!termsAccepted) {
+                alert('Bạn phải đồng ý với các điều khoản để tiếp tục.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Lưu thông tin vào mảng
+                var order = {
+                    phoneNumber: phoneNumber,
+                    email: email,
+                    orderNotes: orderNotes
+                };
+
+                orders.push(order);
+
+                // Hiển thị thông báo mua hàng thành công
+                alert('Mua hàng thành công!');
+
+                // Hiển thị thông tin đơn hàng trong bảng
+                displayOrders();
+                // Chuyển hướng người dùng về trang chủ sau 2 giây
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 2000); // 2000 milliseconds = 2 seconds
+            }
+        }
+
+        function displayOrders() {
+            var tableBody = document.getElementById('orderTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Xóa dữ liệu hiện tại trong bảng
+
+            orders.forEach(function(order) {
+                var row = tableBody.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+
+                cell1.innerText = order.phoneNumber;
+                cell2.innerText = order.email;
+                cell3.innerText = order.orderNotes;
+            });
+        }
+    </script>
 
 
 
-        <!-- Footer Section Begin -->
-        <footer class="footer spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="footer__about">
-                            <div class="footer__about__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                            </div>
-                            <ul>
-                                <li>Địa chỉ: Nguyễn Văn Bảo, Q. Gò Vấp, TP. HCM, Việt Nam </li>
-                                <li>Phone: +84 862 289 104</li>
-                                <li>Email: tien@st.iuh.edu.vn</li>
-                            </ul>
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                        <div class="footer__widget">
-                            <h6>Các liên kết hũu ích</h6>
-                            <ul>
-                                <li><a href="#">Về chúng tôi</a></li>
-                                <li><a href="#">Chính sách mua hàng</a></li>
-                                <li><a href="#">Thông tin giao hàng</a></li>
-                                <li><a href="#">Chính sách bảo mật</a></li>
-                                <li><a href="#">Sitemap</a></li>
-                            </ul>
-                            <ul>
-                                <li><a href="#">Các dịch vụ</a></li>
-                                <li><a href="#">Dự án</a></li>
-                                <li><a href="contact.html">Liên hệ</a></li>
-                                <li><a href="#">Sáng kiến</a></li>
-                                <li><a href="#">Ý kiến</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="footer__widget">
-                            <h6>Tham gia bản tin của chúng tôi ngay bây giờ</h6>
-                            <p>Nhận thông tin cập nhật qua E-mail về cửa hàng mới nhất và các ưu đãi đặc biệt của chúng tôi.</p>
-                            <form action="#">
-                                <input type="text" placeholder="Nhập email">
-                                <button type="submit" class="site-btn">Đăng ký</button>
-                            </form>
-                            <div class="footer__widget__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
+                        <ul>
+                            <li>Địa chỉ: Nguyễn Văn Bảo, Q. Gò Vấp, TP. HCM, Việt Nam </li>
+                            <li>Phone: +84 862 289 104</li>
+                            <li>Email: tien@st.iuh.edu.vn</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="footer__copyright">
-                            <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Các liên kết hũu ích</h6>
+                        <ul>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Chính sách mua hàng</a></li>
+                            <li><a href="#">Thông tin giao hàng</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Các dịch vụ</a></li>
+                            <li><a href="#">Dự án</a></li>
+                            <li><a href="contact.html">Liên hệ</a></li>
+                            <li><a href="#">Sáng kiến</a></li>
+                            <li><a href="#">Ý kiến</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Tham gia bản tin của chúng tôi ngay bây giờ</h6>
+                        <p>Nhận thông tin cập nhật qua E-mail về cửa hàng mới nhất và các ưu đãi đặc biệt của chúng tôi.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Nhập email">
+                            <button type="submit" class="site-btn">Đăng ký</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Footer Section End -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
 
-        <!-- Js Plugins -->
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.nice-select.min.js"></script>
-        <script src="js/jquery-ui.min.js"></script>
-        <script src="js/jquery.slicknav.js"></script>
-        <script src="js/mixitup.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/main.js"></script>
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
 
 
 
